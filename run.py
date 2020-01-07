@@ -1,4 +1,4 @@
-from image_processing import pre_process_image, contour_image, contour_corners, split_image
+from solver.image_processing import pre_process_image, contour_image, contour_corners, split_image
 import cv2
 
 PATH = './images/'
