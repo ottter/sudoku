@@ -1,8 +1,12 @@
-# sudoku - Real time video & image processing Sudoku solver
+# Real time video & image processing sudoku solver
 
 ### Purpose
 I am using this as a learning exercise to learn more about computer vision. I will primarily be using OpenCV to
 accomplish this.
+
+### [Project Wiki](https://github.com/ottter/sudoku/wiki) 
+As I proceed through this, I will be updating the wiki with notes, lessons learned and my thought process throughout 
+the duration of the project
 
 ### Goal
 I want this to eventually be able to display the solution to a sudoku on the puzzle itself in real time using

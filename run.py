@@ -16,8 +16,6 @@ def main():
     squared_image = split_image(warped_image)                    # Splits the image in to 81 cells
 
     cv2.imshow('puzzle', squared_image)
-
-
     cv2.waitKey(0)
 
 if __name__ == "__main__":
