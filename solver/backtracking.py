@@ -4,13 +4,37 @@ def build_array():
     # I imagine this will be used once I link it to the opencv portion
     return np.zeros(shape=(9, 9))
 
-def is_empty():
-    """Check if the cell is empty"""
-    return
+def is_empty(puzzle_array, cell):
+    """Returns True is cell is empty; Returns False if cell is occupied"""
+    if puzzle_array[cell[0]][cell[1]] == 0:
+        return True
+    return False
 
-def is_valid():
-    """Check if the box and row/col is valid"""
-    return
+def is_valid(puzzle_array, cell, guess):
+    """
+    Returns True if puzzle is valid; Returns False if puzle is invalid
+    - Checks if row of input cell is all unique values
+    - Checks if column of input cell is all unique values
+    - Checks if 3x3 square of input cell is all unique value"""
+    column = []
+    for x in range(9):
+        column.append(puzzle_array[x][cell[1]])
+
+    box_x = cell[0] // 3    # Coordinates for 3x3 box the cell is in
+    box_y = cell[1] // 3
+
+    row = [value for value in puzzle_array[cell[0]].tolist() if value != 0]     # Removes empty cells
+    column = [value for value in column if value != 0]
+
+    for i in range(box_y * 3, box_y * 3 + 3):
+        for j in range(box_x * 3, box_x * 3 + 3):
+            if puzzle_array[i][j] == guess:
+                return False
+
+    if len(row) == len(set(row)):
+        if len(column) == len(set(column)):
+            return True
+    return False
 
 def backtrack():
     """Algorithm TBD"""
@@ -28,7 +52,10 @@ def main():
                              [0, 0, 0, 8, 4, 2, 9, 0, 3],
                              [5, 9, 2, 3, 7, 1, 4, 8, 6]])
 
-    print(puzzle_array.shape)
-
+    # TODO: track which values are new vs original puzzle
+    cell = [0, 2]   # position on grid; will be a loop
+    guess = 4
+    print('Cell is empty:\t', is_empty(puzzle_array, cell))
+    print('Entry is valid:\t', is_valid(puzzle_array, cell, guess))
 if __name__ == "__main__":
     main()
