@@ -60,9 +60,9 @@ def solve_sudoku(sudoku):
     return False
 
 def main():
-    puzzle_array = build_array()
-    if solve_sudoku(puzzle_array):
-        print_sudoku(puzzle_array)
+    sudoku = build_array()
+    if solve_sudoku(sudoku):
+        print_sudoku(sudoku)
     else:
         print("No solution")
 
