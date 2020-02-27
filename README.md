@@ -9,10 +9,13 @@ As I proceed through this, I will be updating the wiki with notes, lessons learn
 the duration of the project
 
 ### Status
-🔴: Webcam scanning
-🟢: Scan and cut out sudoku puzzle
-🟢: Solve the puzzle
-🔴: Display solution back on image
+❌: Webcam scanning
+
+✔️: Scan and cut out sudoku puzzle
+
+✔️: Solve the puzzle
+
+❌: Display solution back on image
 
 ### Goal
 I want this to eventually be able to display the solution to a sudoku on the puzzle itself in real time using
