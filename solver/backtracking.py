@@ -1,7 +1,8 @@
 empty_cells = []    # Format: [x, y, answer]    Purpose: potentially for opencv output
 
 def build_array():
-    sudoku = [[2, 3, 0, 4, 1, 5, 0, 6, 8],
+    # The unsolved puzzle in a list of lists
+    sudok1 = [[2, 3, 0, 4, 1, 5, 0, 6, 8],
               [0, 8, 0, 2, 3, 6, 5, 1, 9],
               [1, 6, 0, 9, 8, 7, 2, 3, 4],
               [3, 1, 7, 0, 9, 4, 0, 2, 5],
@@ -10,9 +11,20 @@ def build_array():
               [0, 0, 0, 5, 0, 0, 1, 0, 2],
               [0, 0, 0, 8, 4, 2, 9, 0, 3],
               [5, 9, 2, 3, 7, 1, 4, 8, 6]]
-    return sudoku
+
+    sudok2 = [[0, 3, 9, 1, 0, 0, 0, 0, 0],
+              [4, 0, 8, 0, 6, 0, 0, 0, 2],
+              [2, 0, 0, 5, 8, 0, 7, 0, 0],
+              [8, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 2, 0, 0, 0, 9, 0, 0, 0],
+              [3, 0, 6, 0, 0, 0, 0, 4, 9],
+              [0, 0, 0, 0, 1, 0, 0, 3, 0],
+              [0, 4, 0, 3, 0, 0, 0, 0, 8],
+              [7, 0, 0, 0, 0, 0, 4, 0, 0]]
+    return sudok1
 
 def print_sudoku(puzzle_array):
+    # TODO: This might not be the best method later in project
     for i in puzzle_array:
         print (i)
 
@@ -42,7 +54,7 @@ def is_safe(sudoku, guess, row, col):
                 return False
     return True
 
-def solve_sudoku(sudoku):
+def backtrack_algorithm(sudoku):
     solution = is_empty(sudoku)
 
     if solution[2]:
@@ -52,19 +64,17 @@ def solve_sudoku(sudoku):
     for guess in range(1,10):
         if is_safe(sudoku, guess, row, col):
             sudoku[row][col] = guess
-            if solve_sudoku(sudoku):
+            if backtrack_algorithm(sudoku):
                 empty_cells.append([solution[0], solution[1], guess])
                 return True
 
             sudoku[row][col]=0
     return False
 
-def main():
+def solve_sudoku():
+    # Replace below line with the imported puzzle array
     sudoku = build_array()
-    if solve_sudoku(sudoku):
+    if backtrack_algorithm(sudoku):
         print_sudoku(sudoku)
     else:
         print("No solution")
-
-if __name__ == "__main__":
-    main()

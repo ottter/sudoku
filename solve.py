@@ -1,10 +1,12 @@
 from solver.image_processing import pre_process_image, contour_image, contour_corners, split_image
+from solver.backtracking import solve_sudoku
 import cv2
 
-PATH = './images/'
+PATH_TO_IMAGES = './images/'
+
 
 def main():
-    original = cv2.imread(PATH + 'sudoku-2.jpg')                # Import the image file with the sudoku puzzle
+    original = cv2.imread(PATH_TO_IMAGES + 'sudoku-2.jpg')      # Import the image file with the sudoku puzzle
     # cv2.imshow('Original', original)
 
     processed_image = pre_process_image(original)               # Gray-scale, Gaussian blur, Adaptive threshold
@@ -15,8 +17,11 @@ def main():
 
     squared_image = split_image(warped_image)                    # Splits the image in to 81 cells
 
-    cv2.imshow('puzzle', squared_image)
-    cv2.waitKey(0)
+    cv2.imshow('puzzle', squared_image)                          # Visualization
+
+    solve_sudoku()                                               # Solves the puzzle using the given array
+
+    cv2.waitKey(0)                                               # Holds the visualization open
 
 if __name__ == "__main__":
     main()
